@@ -1,0 +1,16 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: #80cdf7;
+  margin: 0px;
+  height: 100vh;
+  display: flex;
+  justify-content: space-around;
+  place-items: center;
+}
+
+.btn {
+  margin: 2px 0;
+}
