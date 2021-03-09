@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 
 const SnackFormEdit = (props) => {
   const [formState, setFormState] = useState({
-    genre: "",
-    title: "",
+    rating: "",
+    name: "",
     description: "",
   });
 
@@ -27,18 +27,18 @@ const SnackFormEdit = (props) => {
       <h2>Edit Snack</h2>
       <form onSubmit={handleSubmit}>
         <label>
-          Title
+          Name
           <input
-            name="title"
-            value={formState.title}
+            name="name"
+            value={formState.name}
             onChange={handleChange}
           ></input>
         </label>
         <label>
-          Genre
+          Rating
           <input
-            name="genre"
-            value={formState.genre}
+            name="rating"
+            value={formState.rating}
             onChange={handleChange}
           ></input>
         </label>

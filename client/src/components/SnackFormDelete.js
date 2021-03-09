@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 
 const SnackFormDelete = (props) => {
   const [formState, setFormState] = useState({
-    genre: "",
-    title: "",
+    rating: "",
+    name: "",
     description: "",
   });
 
@@ -26,18 +26,18 @@ const SnackFormDelete = (props) => {
       <h2>Delete Snack</h2>
       <form onSubmit={handleSubmit}>
         <label>
-          Title
+          Name
           <input
-            name="title"
-            value={formState.title}
+            name="name"
+            value={formState.name}
             onChange={handleChange}
           ></input>
         </label>
         <label>
-          Genre
+          Rating
           <input
-            name="genre"
-            value={formState.genre}
+            name="rating"
+            value={formState.rating}
             onChange={handleChange}
           ></input>
         </label>
