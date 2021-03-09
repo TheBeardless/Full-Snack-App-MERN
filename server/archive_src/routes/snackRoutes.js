@@ -1,6 +1,6 @@
 const express = require("express");
 const { request } = require("http");
-const SnackModel = require("../models/SnackModel");
+const SnackModel = require("../../models/snack");
 
 // // this will handle all internal routes
 const router = express.Router();
