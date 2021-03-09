@@ -4,7 +4,7 @@ const cors = require("cors");
 const session = require("express-session"); // for cookies
 
 // connect mongoDB/mongoose here.
-mongoose.connect("mongodb://localhost:27017/fullSnack", {
+mongoose.connect("mongodb://localhost:27017/fullSnackApp-MERN", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });

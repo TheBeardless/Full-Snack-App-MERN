@@ -11,15 +11,15 @@ const FunctionalSnackContainer = () => {
 
   // State to store snack being selected to edit
   const [snackEdit, setSnackEdit] = useState({
-    genre: "",
-    title: "",
+    rating: "",
+    name: "",
     description: "",
   });
 
   // State to store snack being selected to deleted
   const [snackDelete, setSnackDelete] = useState({
-    genre: "",
-    title: "",
+    rating: "",
+    name: "",
     description: "",
   });
 
@@ -72,9 +72,9 @@ const FunctionalSnackContainer = () => {
     });
   };
 
-  const handleSnackFormSubmit = (title, genre, description) => {
-    // Read title and genre state and put in a temp variable which is Obj literal
-    const newSnack = { genre: genre, title: title, description: description };
+  const handleSnackFormSubmit = (name, rating, description) => {
+    // Read name and rating state and put in a temp variable which is Obj literal
+    const newSnack = { rating: rating, name: name, description: description };
 
     const newSnacks = [...snacksList];
     newSnacks.push(newSnack);
@@ -92,7 +92,7 @@ const FunctionalSnackContainer = () => {
   };
 
   useEffect(() => {
-    fetch("http://localhost:9000/api/v1/movies", {
+    fetch("http://localhost:3000/snacks", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

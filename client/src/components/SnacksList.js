@@ -3,14 +3,7 @@ import React from "react";
 class SnacksList extends React.Component {
   constructor() {
     super();
-    this.state = {
-      snacks: [
-        { title: "X-men", genre: "Fantasy" },
-        { title: "Start Trek", genre: "Science Fiction" },
-      ],
-      title: "",
-      genre: "",
-    };
+    this.state = {};
   }
 
   handleChange = (e) => {
@@ -20,8 +13,8 @@ class SnacksList extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    // Read title and genre state and put in a temp variable which is Obj literal
-    const newSnack = { genre: this.state.genre, title: this.state.title };
+    // Read name and rating state and put in a temp variable which is Obj literal
+    const newSnack = { rating: this.state.rating, name: this.state.name };
     // Create a new snacks array variable which is a copy from snacks state via ... operator
     const newSnacks = [...this.state.snacks];
     newSnacks.push(newSnack);
@@ -34,18 +27,18 @@ class SnacksList extends React.Component {
       <div>
         <form onSubmit={this.handleSubmit}>
           <label>
-            Title
+            Name
             <input
-              name="title"
-              value={this.state.title}
+              name="Name"
+              value={this.state.name}
               onChange={this.handleChange}
             ></input>
           </label>
           <label>
-            Genre
+            Rating
             <input
-              name="genre"
-              value={this.state.genre}
+              name="rating"
+              value={this.state.rating}
               onChange={this.handleChange}
             ></input>
           </label>
@@ -54,7 +47,7 @@ class SnacksList extends React.Component {
         <ul>
           {this.state.snacks.map((el, index) => (
             <li key={index}>
-              Title: {el.title} - Genre: {el.genre}
+              Name: {el.name} - Rating: {el.rating}
             </li>
           ))}
         </ul>

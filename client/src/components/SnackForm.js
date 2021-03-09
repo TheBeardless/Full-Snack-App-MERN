@@ -1,15 +1,9 @@
 import React, { useState } from "react";
 
 const SnackForm = (props) => {
-  // const [title, setTitle] = useState("");
-  // const [genre, setGenre] = useState("");
-  // const [description, setDescription] = useState("");
-  // 1st element - > state Variable
-  // 2nd element - > function to change that state variable
-
   const [formState, setFormState] = useState({
-    genre: "",
-    title: "",
+    rating: "",
+    name: "",
     description: "",
   });
 
@@ -34,7 +28,7 @@ const SnackForm = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("handleSubmit");
-    props.submit(formState.title, formState.genre, formState.description);
+    props.submit(formState.name, formState.rating, formState.description);
   };
 
   return (
@@ -42,18 +36,18 @@ const SnackForm = (props) => {
       <h2>Add Snack</h2>
       <form onSubmit={handleSubmit}>
         <label>
-          Title
+          Name
           <input
-            name="title"
-            value={formState.title}
+            name="name"
+            value={formState.name}
             onChange={handleChange}
           ></input>
         </label>
         <label>
-          Genre
+          Rating
           <input
-            name="genre"
-            value={formState.genre}
+            name="rating"
+            value={formState.rating}
             onChange={handleChange}
           ></input>
         </label>

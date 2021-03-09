@@ -5,7 +5,7 @@ const List = (props) => {
     <ul>
       {props.snacks.map((el, index) => (
         <li key={index} onClick={() => props.handleClick(index)}>
-          Title: {el.title} - Genre: {el.genre}
+          Name: {el.name} - Rating: {el.rating}
         </li>
       ))}
     </ul>
