@@ -5,7 +5,7 @@ const router = express.Router();
 const Snack = require("../models/snack");
 
 router.get("/", async (req, res, next) => {
-  console.log(req.body, "this is all snacks");
+  console.log(req.body, "this is get");
   try {
     const allSnacks = await Snack.find();
     res.json({
