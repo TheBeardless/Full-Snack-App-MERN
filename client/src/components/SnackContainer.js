@@ -2,21 +2,18 @@ import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Link, Switch, Route } from "react-router-dom";
 import { SnackForm } from "./SnackForm";
 import { SnackFormEdit } from "./SnackFormEdit";
-import { List } from "./List";
+import { SnackList } from "./SnackList";
 import { SnackFormDelete } from "./SnackFormDelete";
+import { Button } from "react-bootstrap";
 
-const FunctionalSnackContainer = () => {
+const SnackContainer = () => {
   // Initialise state variables using hooks
-  const [snacksList, setSnacksList] = useState([]);
-
-  // State to store snack being selected to edit
+  const [snackList, setSnackList] = useState([]);
   const [snackEdit, setSnackEdit] = useState({
     rating: "",
     name: "",
     description: "",
   });
-
-  // State to store snack being selected to deleted
   const [snackDelete, setSnackDelete] = useState({
     rating: "",
     name: "",
@@ -25,27 +22,26 @@ const FunctionalSnackContainer = () => {
 
   // This function runs when you click a snack from the snack list
   const handleSnackClick = (snackIndex) => {
-    const snack = snacksList[snackIndex];
+    console.log("index", snackIndex);
+    const snack = snackList[snackIndex];
+    console.log(snack);
 
-    /* 
-    You set both the snackEdit and SnackDelete as the selected snack
-    so both forms are pre-loaded with the contents of the snack that will be deleted 
-    */
     setSnackEdit(snack);
     setSnackDelete(snack);
   };
 
   const handleEditSnack = (snack) => {
-    const foundSnack = snacksList.findIndex((snackEl) => {
-      return snackEl._id === snack._id;
+    console.log("snack to edit", snack);
+    const foundSnack = snackList.findIndex((snackEle) => {
+      return snackEle._id === snack._id;
     });
-    const newSnacks = [...snacksList];
+    const newSnacks = [...snackList];
     newSnacks[foundSnack] = snack;
+    console.log("newSnacks: ", newSnacks);
+    setSnackList(newSnacks);
 
     // Update snack list by calling the setSnacksList function
-    setSnacksList(newSnacks);
-    fetch(`http://localhost:3000/snacks/${snack._id}`, {
-      //TODO
+    fetch(`http://localhost:9000/snacks/${snack._id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -55,44 +51,45 @@ const FunctionalSnackContainer = () => {
   };
 
   const handleDeleteSnack = (snack) => {
-    const foundSnack = snacksList.findIndex((snackEl) => {
-      return snackEl._id === snack._id;
+    const foundSnack = snackList.findIndex((snackEle) => {
+      return snackEle._id === snack._id;
     });
 
-    const newSnacks = [...snacksList];
+    const newSnacks = [...snackList];
     newSnacks[foundSnack] = snack;
+    setSnackList(newSnacks);
 
     // Update snack list by calling the setSnacksList function
-    setSnacksList(newSnacks);
-    fetch(`http://localhost:3000/snacks/${snack._id}`, {
+    fetch(`http://localhost:9000/snacks/${snack._id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
       },
-    });
+      body: JSON.stringify(snack),
+    }).then((response) => {});
   };
 
   const handleSnackFormSubmit = (name, rating, description) => {
     // Read name and rating state and put in a temp variable which is Obj literal
-    const newSnack = { rating: rating, name: name, description: description };
+    const newSnack = { name: name, rating: rating, description: description };
 
-    const newSnacks = [...snacksList];
+    const newSnacks = [...snackList];
     newSnacks.push(newSnack);
 
     // Update snack list by calling the setSnacksList function
-    setSnacksList(newSnacks);
+    setSnackList(newSnacks);
 
-    fetch("http://localhost:3000/all", {
+    fetch("http://localhost:9000/snacks", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(newSnack),
-    });
+    }).then((response) => {});
   };
 
   useEffect(() => {
-    fetch("http://localhost:3000/snacks", {
+    fetch("http://localhost:9000/snacks", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -101,28 +98,42 @@ const FunctionalSnackContainer = () => {
       .then((response) => {
         return response.json();
       })
-      .then((snackData) => {
+      .then((response) => {
         // call to set state
-        setSnacksList(snackData.data);
+        setSnackList(response.data);
       });
-  }, [snacksList]);
+  }, []);
 
   return (
     <Router>
       <div>
-        <h1>Snacks</h1>
-        <List snacks={snacksList} handleClick={handleSnackClick} />
+        <h1>Full Snack App</h1>
 
-        <Link to="/snack/add">Add Snack</Link>
-        <Link to="/snack/edit">Edit Snack</Link>
-        <Link to="/snack/delete">Delete Snack</Link>
+        <Link to="/snack/add">
+          <Button variant="outline-info" className="button">
+            Add Snack
+          </Button>
+        </Link>
+        <Link to="/snack/edit">
+          <Button variant="outline-info" className="button">
+            Edit Snack
+          </Button>
+        </Link>
+        <Link to="/snack/delete">
+          <Button variant="outline-info" className="button">
+            Delete Snack
+          </Button>
+        </Link>
+        <SnackList snacks={snackList} handleSnackClick={handleSnackClick} />
+        <SnackFormEdit submit={handleEditSnack} snack={snackEdit} />
+
         <Switch>
           <Route path="/snack/add">
             <SnackForm submit={handleSnackFormSubmit} />
           </Route>
-          <Route path="/snack/edit">
+          {/* <Route path="/snack/edit">
             <SnackFormEdit submit={handleEditSnack} snack={snackEdit} />
-          </Route>
+          </Route> */}
           <Route path="/snack/delete">
             <SnackFormDelete submit={handleDeleteSnack} snack={snackDelete} />
           </Route>
@@ -132,4 +143,4 @@ const FunctionalSnackContainer = () => {
   );
 };
 
-export { FunctionalSnackContainer };
+export { SnackContainer };

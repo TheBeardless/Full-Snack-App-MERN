@@ -7,21 +7,11 @@ const SnackForm = (props) => {
     description: "",
   });
 
-  // useEffect(() => {
-  //   console.log('SnackForm useEffect');
-  //   setFormState(props.snack)
-  // }, [props.snack])
-
-  // 1st element - > state Variable
-  // 2nd element - > function to change that state variable
-
   const handleChange = (e) => {
     // console.log('formState', formState);
     const newState = { ...formState };
     newState[e.target.name] = e.target.value;
-    // Alternate one line for the previous two lines
-    // const newState = { ...formState, [e.target.name]: e.target.value }
-    // console.log('newState', newState);
+
     setFormState(newState);
   };
 
