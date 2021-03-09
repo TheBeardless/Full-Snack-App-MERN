@@ -19,6 +19,7 @@ const SnackFormEdit = (props) => {
   };
 
   const handleSubmit = (e) => {
+    e.preventDefault();
     props.submit(formState);
   };
 

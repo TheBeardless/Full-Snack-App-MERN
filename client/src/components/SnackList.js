@@ -13,17 +13,21 @@ const SnackList = (props) => {
           </tr>
         </thread>
         <tbody>
-          {props.snacks.map((e, index) => (
-            <tr key={index} onClick={() => props.handleClick(index)}>
-              <td>{e.name}</td>
-              <td>{e.rating}</td>
-              <td>{e.description}</td>
+          {props.snacks.map((
+            el,
+            index // el is snack in SnackContainer const handleEditSnack = (snack) => {
+          ) => (
+            <tr key={index}>
+              <td>{el.name}</td>
+              <td>{el.rating}</td>
+              <td>{el.description}</td>
               <td>
                 <button
                   type="submit"
                   className="btn btn-warning"
                   onClick={() => {
-                    props.handleEditSnack(e);
+                    props.handleSnackClick(index);
+                    // props.handleEditSnack(el);
                   }}
                 >
                   Edit
@@ -32,7 +36,7 @@ const SnackList = (props) => {
                   type="submit"
                   className="btn btn-danger"
                   onClick={() => {
-                    props.handleDeleteSnack(e._id);
+                    props.handleDeleteSnack(el._id);
                   }}
                 >
                   Delete

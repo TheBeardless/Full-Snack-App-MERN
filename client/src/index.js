@@ -4,7 +4,7 @@ import { App } from "./App";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 
-import "regenerator-runtime/runtime";
+// import "regenerator-runtime/runtime";
 // import Swal from "sweetalert2";
 
 // build page
