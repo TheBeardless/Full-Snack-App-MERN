@@ -5,9 +5,9 @@ import { SnackFormEdit } from "./SnackFormEdit";
 import { SnackList } from "./SnackList";
 import { SnackFormDelete } from "./SnackFormDelete";
 import { Button } from "react-bootstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const SnackContainer = () => {
-  // Initialise state variables using hooks
   const [snackList, setSnackList] = useState([]);
   const [snackEdit, setSnackEdit] = useState({
     rating: "",
@@ -108,37 +108,25 @@ const SnackContainer = () => {
 
   return (
     <Router>
-      <div>
-        <h1>Full Snack App</h1>
-
-        <Link to="/snack/add">
-          <Button variant="outline-info" className="button">
-            Add Snack
-          </Button>
-        </Link>
-        <Link to="/snack/edit">
-          <Button variant="outline-info" className="button">
-            Edit Snack
-          </Button>
-        </Link>
-        <Link to="/snack/delete">
-          <Button variant="outline-info" className="button">
-            Delete Snack
-          </Button>
-        </Link>
+      <div className="container">
+        <h1 className="heading text-center">
+          <strong>
+            <FontAwesomeIcon icon="hamburger" /> FULL S
+            <span style={{ textDecorationLine: "line-through" }}>t</span>NACK
+            APP <FontAwesomeIcon icon="pizza-slice" />
+          </strong>
+        </h1>
         <SnackList snacks={snackList} handleSnackClick={handleSnackClick} />
-        <SnackFormEdit submit={handleEditSnack} snack={snackEdit} />
-        <SnackFormDelete submit={handleDeleteSnack} snack={snackDelete} />
         <Switch>
           <Route path="/snack/add">
             <SnackForm submit={handleSnackFormSubmit} />
           </Route>
-          {/* <Route path="/snack/edit">
+          <Route path="/snack/edit">
             <SnackFormEdit submit={handleEditSnack} snack={snackEdit} />
-          </Route> */}
-          {/* <Route path="/snack/delete">
+          </Route>
+          <Route path="/snack/delete">
             <SnackFormDelete submit={handleDeleteSnack} snack={snackDelete} />
-          </Route> */}
+          </Route>
         </Switch>
       </div>
     </Router>

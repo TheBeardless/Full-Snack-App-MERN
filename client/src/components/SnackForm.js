@@ -26,30 +26,34 @@ const SnackForm = (props) => {
     <div>
       <h2>Add Snack</h2>
       <form onSubmit={handleSubmit}>
-        <label>
-          Name
+        <div className="form-group">
+          <label>Name</label>
           <input
+            className="form-control"
+            id="inputName"
             name="name"
             value={formState.name}
             onChange={handleChange}
           ></input>
-        </label>
-        <label>
-          Rating
+        </div>
+        <div className="form-group">
+          <label>Rating</label>
           <input
+            className="form-control"
             name="rating"
             value={formState.rating}
             onChange={handleChange}
           ></input>
-        </label>
-        <label>
-          Description
+        </div>
+        <div className="form-group">
+          <label>Description</label>
           <input
+            className="form-control"
             name="description"
             value={formState.description}
             onChange={handleChange}
           ></input>
-        </label>
+        </div>
         <Button type="submit" className="btn btn-primary">
           Add Snack
         </Button>
