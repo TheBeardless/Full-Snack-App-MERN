@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Button } from "react-bootstrap";
 
 const SnackForm = (props) => {
   const [formState, setFormState] = useState({
@@ -49,7 +50,9 @@ const SnackForm = (props) => {
             onChange={handleChange}
           ></input>
         </label>
-        <button type="submit">Add Snack</button>
+        <Button type="submit" className="btn btn-primary">
+          Add Snack
+        </Button>
       </form>
     </div>
   );
