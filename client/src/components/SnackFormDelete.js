@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Button } from "react-bootstrap";
 
 const SnackFormDelete = (props) => {
   const [formState, setFormState] = useState({
@@ -18,6 +19,7 @@ const SnackFormDelete = (props) => {
   };
 
   const handleSubmit = (e) => {
+    e.preventDefault();
     props.submit(formState);
   };
 
@@ -25,31 +27,37 @@ const SnackFormDelete = (props) => {
     <div>
       <h2>Delete Snack</h2>
       <form onSubmit={handleSubmit}>
-        <label>
-          Name
+        <div className="form-group">
+          <label>Name</label>
           <input
+            className="form-control"
+            id="inputName"
             name="name"
             value={formState.name}
             onChange={handleChange}
           ></input>
-        </label>
-        <label>
-          Rating
+        </div>
+        <div className="form-group">
+          <label>Rating</label>
           <input
+            className="form-control"
             name="rating"
             value={formState.rating}
             onChange={handleChange}
           ></input>
-        </label>
-        <label>
-          Description
+        </div>
+        <div className="form-group">
+          <label>Description</label>
           <input
+            className="form-control"
             name="description"
             value={formState.description}
             onChange={handleChange}
           ></input>
-        </label>
-        <button type="submit">Delete Snack</button>
+        </div>
+        <Button type="submit" className="btn btn-danger">
+          Delete Snack
+        </Button>
       </form>
     </div>
   );
