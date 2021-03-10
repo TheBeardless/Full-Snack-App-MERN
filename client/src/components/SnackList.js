@@ -5,13 +5,13 @@ const SnackList = (props) => {
   return (
     <div>
       <table className="table table-striped">
-        <thread>
+        <thead>
           <tr>
             <th>Name</th>
             <th>Rating</th>
             <th>Description</th>
           </tr>
-        </thread>
+        </thead>
         <tbody>
           {props.snacks.map((
             el,
@@ -36,7 +36,7 @@ const SnackList = (props) => {
                   type="submit"
                   className="btn btn-danger"
                   onClick={() => {
-                    props.handleDeleteSnack(el._id);
+                    props.handleSnackClick(index);
                   }}
                 >
                   Delete

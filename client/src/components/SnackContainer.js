@@ -51,12 +51,14 @@ const SnackContainer = () => {
   };
 
   const handleDeleteSnack = (snack) => {
+    console.log("snack to delete", snack);
     const foundSnack = snackList.findIndex((snackEle) => {
       return snackEle._id === snack._id;
     });
 
     const newSnacks = [...snackList];
     newSnacks[foundSnack] = snack;
+    console.log("newSnacks: ", newSnacks);
     setSnackList(newSnacks);
 
     // Update snack list by calling the setSnacksList function
@@ -126,7 +128,7 @@ const SnackContainer = () => {
         </Link>
         <SnackList snacks={snackList} handleSnackClick={handleSnackClick} />
         <SnackFormEdit submit={handleEditSnack} snack={snackEdit} />
-
+        <SnackFormDelete submit={handleDeleteSnack} snack={snackDelete} />
         <Switch>
           <Route path="/snack/add">
             <SnackForm submit={handleSnackFormSubmit} />
@@ -134,9 +136,9 @@ const SnackContainer = () => {
           {/* <Route path="/snack/edit">
             <SnackFormEdit submit={handleEditSnack} snack={snackEdit} />
           </Route> */}
-          <Route path="/snack/delete">
+          {/* <Route path="/snack/delete">
             <SnackFormDelete submit={handleDeleteSnack} snack={snackDelete} />
-          </Route>
+          </Route> */}
         </Switch>
       </div>
     </Router>
